@@ -3,17 +3,20 @@ using System.Collections.Generic;
 
 public class PerformanceReport
 {
-    public string DetermineRank(int score)
+    public string DetermineRank(int score, int maximumScore)
     {
-        if (score >= 300)
+        double percentage =
+            (double)score / maximumScore * 100;
+
+        if (percentage >= 90)
         {
             return "Senior Security Analyst";
         }
-        else if (score >= 200)
+        else if (percentage >= 75)
         {
             return "Security Analyst";
         }
-        else if (score >= 100)
+        else if (percentage >= 50)
         {
             return "Junior Security Analyst";
         }
@@ -25,16 +28,24 @@ public class PerformanceReport
 
     public void DisplayReport(
         SecurityAnalyst analyst,
-        List<ResponseResult> results)
+        List<ResponseResult> results,
+        int maximumScore)
     {
+        double percentage =
+            (double)analyst.GetScore() / maximumScore * 100;
+
         Console.WriteLine();
-        Console.WriteLine("==================================");
+        Console.WriteLine("======================================");
         Console.WriteLine("       FINAL PERFORMANCE REPORT");
-        Console.WriteLine("==================================");
+        Console.WriteLine("======================================");
 
         Console.WriteLine($"Analyst: {analyst.GetName()}");
-        Console.WriteLine($"Final Score: {analyst.GetScore()}");
-        Console.WriteLine($"Rank: {DetermineRank(analyst.GetScore())}");
+        Console.WriteLine(
+            $"Final Score: {analyst.GetScore()} / {maximumScore}");
+        Console.WriteLine(
+            $"Percentage: {percentage:F1}%");
+        Console.WriteLine(
+            $"Rank: {DetermineRank(analyst.GetScore(), maximumScore)}");
 
         Console.WriteLine();
         Console.WriteLine("Incident Results:");
@@ -44,6 +55,6 @@ public class PerformanceReport
             Console.WriteLine(result.GetSummary());
         }
 
-        Console.WriteLine("==================================");
+        Console.WriteLine("======================================");
     }
 }
