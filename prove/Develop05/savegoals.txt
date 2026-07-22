@@ -1,0 +1,4 @@
+1210
+ChecklistGoal|Checklist|A checklist|100|2|10|2
+EternalGoal|Eternal|it is eternal|50
+EternalGoal|Testing|testing|300

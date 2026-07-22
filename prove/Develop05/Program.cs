@@ -1,9 +1,14 @@
 using System;
 
+//I added a level system to the program, so that
+//when the user reaches 1000 points they go up one level.
+//The program also announces when they have reached a new level.
+
 class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello Develop05 World!");
+        GoalManager manager = new GoalManager();
+        manager.Start();
     }
 }
